@@ -23,9 +23,9 @@ O sistema foi construído com foco em modularidade, reutilização de código e 
 
 A arquitetura do projeto foi dividida em camadas para separar responsabilidades:
 
-/configs: Configurações de banco de dados e middlewares (ex: upload com Multer).
-/controllers: Lógica de requisição e resposta (trata as chamadas HTTP e retorna JSON).
-/models: Classes de domínio com encapsulamento e validação de regras de negócio.
-/repositories: Camada de acesso a dados (abstrai as queries SQL).
-/enums: Arquivos de padronização, como os status do pedido.
-/routes: Definição dos endpoints da API.
+### /configs: Configurações de banco de dados e middlewares (ex: upload com Multer).
+### /controllers: Lógica de requisição e resposta (trata as chamadas HTTP e retorna JSON).
+### /models: Classes de domínio com encapsulamento e validação de regras de negócio.
+### /repositories: Camada de acesso a dados (abstrai as queries SQL).
+### /enums: Arquivos de padronização, como os status do pedido.
+### /routes: Definição dos endpoints da API.
