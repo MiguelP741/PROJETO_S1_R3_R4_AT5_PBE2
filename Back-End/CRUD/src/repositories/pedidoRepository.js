@@ -13,7 +13,7 @@ const pedidoRepository = {
             await conn.beginTransaction();
 
             const sqlPed = 'INSERT INTO pedidos(ValorTotal, StatusPedido) VALUES (?,?);'
-            const valuesPed = [pedido.valorTotal, pedido.StatusPedido]
+            const valuesPed = [pedido.valorTotal, pedido.statusPedido]
             const [rowsPed] = await conn.execute(sqlPed, valuesPed);
 
             itens.forEach(async item => {
@@ -162,7 +162,7 @@ const pedidoRepository = {
             await conn.beginTransaction();
 
             const sqlPed = 'UPDATE pedidos SET ValorTotal = ?, StatusPedido = ? WHERE IdPedido = ?;'
-            const valuesPed = [pedido.clienteId, pedido.subTotal, pedido.status, pedido.id]
+            const valuesPed = [pedido.clienteId, pedido.subTotal, pedido.statusPedido, pedido.id]
             const [rowsPed] = await conn.execute(sqlPed, valuesPed);
 
             itens.forEach(async item => {

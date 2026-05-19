@@ -95,7 +95,7 @@ const pedidoController = {
                     id: item.id
                 })
             );
-            const subTotal = ItenPedido.calcularValorTotalItens(ItensPedido)
+            const valorTotal = ItenPedido.calcularValorTotalItens(ItensPedido)
             const pedido = Pedido.editar({ valorTotal, statusPedido: statusPed.ABERTO, id })
 
             const result = await pedidoRepository.editar(pedido, ItensPedido);

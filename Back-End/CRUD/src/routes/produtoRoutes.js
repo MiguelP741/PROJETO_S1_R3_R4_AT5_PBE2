@@ -1,5 +1,5 @@
 import { Router } from "express";
-import produtoController from "../controllers/produtoController.js";
+import produtoController from "../controller/produtoController.js";
 import uploadImage from "../middlewares/uploadImage.middleware.js";
 
 const produtoRoutes = Router();
