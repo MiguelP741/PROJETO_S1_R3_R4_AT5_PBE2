@@ -23,7 +23,6 @@ export async function personagensPage() {
         produtos.forEach(produto => {
 
             const coluna = criarColuna();
-
             
             produto.imagem = `http://localhost:8000/imagens/${produto.imagem}`;
 
