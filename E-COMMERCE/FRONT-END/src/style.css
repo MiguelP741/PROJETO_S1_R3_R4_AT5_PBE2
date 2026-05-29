@@ -1,0 +1,356 @@
+
+
+:root {
+
+  --cor-principal: #000000;
+  --cor-secundaria: #121212;
+  --cor-cinza: #9ca3af;
+  --cor-texto: #ffffff;
+  --cor-verde: #22c55e;
+
+}
+
+
+/* 
+   BODY / FUNDO GERAL
+
+   Antes: fundo eu estava usando preto meio fosco.
+
+   Agora: estou usando radial-gradient para criar
+   brilhos suaves verdes nos cantos da tela.
+
+    como mestre arco-iris me ensinou 
+ */
+
+body {
+
+  font-family: 'Manrope', 'Inter', sans-serif;
+
+  background:
+
+    radial-gradient(circle at top right,
+      rgba(34, 197, 94, .12),
+      transparent 35%),
+
+    radial-gradient(circle at bottom left,
+      rgba(34, 197, 94, .06),
+      transparent 40%),
+
+    #111111;
+
+  color: white;
+
+}
+
+
+
+
+h1 {
+
+  color: white;
+  font-weight: 800;
+
+}
+
+
+
+.produto-card {
+
+  border-radius: 22px;
+
+  overflow: hidden;
+
+  background: linear-gradient(180deg,
+      #111111,
+      #050505);
+
+  border: 1px solid #1f1f1f;
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, .35);
+
+  transition: .35s ease;
+
+}
+
+
+/* 
+   EFEITO HOVER DO CARD
+
+   Quando o usuário passa o mouse:
+
+   - card sobe levemente
+   - sombra verde aparece
+
+ */
+
+.produto-card:hover {
+
+  transform: translateY(-8px);
+
+  border-color: var(--cor-verde);
+
+  box-shadow:
+
+    0 18px 45px rgba(34, 197, 94, .15);
+
+}
+
+
+/* 
+   IMAGEM DO PRODUTO
+
+   object-fit: contain
+   mantém a imagem inteira sem cortar.
+
+   Adicionamos glow verde suave atrás
+   usando radial-gradient. que o professor 
+   Matheus me ensinou a usar.
+*/
+
+.produto-img {
+
+  height: 220px;
+
+  width: 100%;
+
+  object-fit: contain;
+
+  padding: 25px;
+
+  background:
+
+    radial-gradient(circle,
+      rgba(34, 197, 94, .10),
+      transparent 70%),
+
+    #0d0d0d;
+
+  border-radius: 20px;
+
+  transition: .4s;
+
+}
+
+
+/* 
+   HOVER DA IMAGEM
+
+ */
+
+.produto-card:hover .produto-img {
+
+  transform: scale(1.05);
+
+}
+
+
+/* 
+   ÁREA DE CONTEÚDO DO CARD
+ */
+
+.produto-info {
+
+  padding: 20px;
+
+}
+
+
+/* 
+   MARCA DO PRODUTO
+*/
+
+.produto-marca {
+
+  color: var(--cor-cinza);
+
+  font-size: 12px;
+
+  letter-spacing: 1px;
+
+  font-weight: bold;
+
+  margin-bottom: 8px;
+
+}
+
+
+/* 
+   NOME DO PRODUTO
+ */
+
+.produto-nome {
+
+  font-size: 28px;
+
+  font-weight: 700;
+
+  color: white;
+
+  margin-bottom: 10px;
+
+}
+
+
+/* 
+   PREÇO
+
+   Verde forte para chamar atenção
+   na informação principal de compra.
+ */
+
+.produto-preco {
+
+  font-size: 22px;
+
+  color: var(--cor-verde);
+
+  font-weight: 800;
+
+  margin-bottom: 16px;
+
+}
+
+
+/* 
+   BOTÃO CARRINHO
+
+*/
+
+.btn-carrinho {
+
+  width: 100%;
+
+  background:
+
+    linear-gradient(90deg,
+      #22c55e,
+      #16a34a);
+
+  color: white;
+
+  border: none;
+
+  padding: 12px;
+
+  border-radius: 12px;
+
+  font-weight: 700;
+
+  transition: .3s;
+
+  
+
+}
+
+/*
+   HOVER DO BOTÃO
+
+   Pequena animação visual. */
+
+.btn-carrinho:hover {
+
+  transform: scale(1.02);
+
+  box-shadow:
+    0 0 20px rgba(34, 197, 94, .25);
+
+}
+
+
+/*PAGINAÇÃO*/
+
+.page-link {
+
+  background-color: #1a1a1a;
+
+  color: white;
+
+  border: 1px solid #333;
+
+}
+
+
+.page-link:hover {
+
+  background-color: var(--cor-cinza);
+
+  color: white;
+
+}
+
+
+.page-item.active .page-link {
+
+  background-color: var(--cor-cinza);
+
+  border-color: var(--cor-cinza);
+
+}
+
+/*CAMPO QUANTIDADE*/
+
+.input-quantidade{
+
+  width:90px;
+
+  height:42px;
+
+  text-align:center;
+
+  border-radius:12px;
+
+  border:1px solid #2b2b2b;
+
+  background:#181818;
+
+  color:white;
+
+  margin-bottom:12px;
+
+  transition:.3s;
+
+}
+
+.input-quantidade:focus{
+
+  outline:none;
+
+  border-color:var(--cor-verde);
+
+  box-shadow:
+    0 0 12px rgba(34,197,94,.18);
+
+}
+
+
+/*MENSAGEM DE ERRO*/
+
+.mensagem {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.mensagem-erro {
+  color: #ff4d4d;
+}
+
+.mensagem-sucesso {
+  color: #7aef44;
+}
+
+
+/*IMAGEM DO CARRINHO*/
+
+.carrinho-img{
+
+  height:180px;
+
+  width:100%;
+
+  object-fit:contain;
+
+  margin-bottom:15px;
+
+}
