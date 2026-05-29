@@ -6,11 +6,11 @@ export class ItenPedido {
     #precoUnitario;
 
     constructor(pIdPedido, pIdProduto, pQuantidade, pPrecoUnitario, pIdItemPedido) {
-        this.#idPedido = pIdPedido;
-        this.#idProduto = pIdProduto;
-        this.#quantidade = pQuantidade;
-        this.#precoUnitario = pPrecoUnitario;
-        this.#idItemPedido = pIdItemPedido;
+        this.idPedido = pIdPedido;
+        this.idProduto = pIdProduto;
+        this.quantidade = pQuantidade;
+        this.precoUnitario = pPrecoUnitario;
+        this.idItemPedido = pIdItemPedido;
     }
 
     get idItemPedido() { return this.#idItemPedido; }
