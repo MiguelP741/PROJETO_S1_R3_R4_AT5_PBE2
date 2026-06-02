@@ -1,125 +1,98 @@
 import { salvarCarrinho } from '../../storage/carrinho/carrinho.storage';
+import criarImagemProduto from './imagem.component';
 
 export default function criarCardProduto(produto) {
 
     const card = document.createElement('div');
-    card.className = 'card produto-card border-0';
+    card.className = 'card produto-card border-0 bg-dark h-100';
 
-    // IMAGEM
-    const imagem = document.createElement('img');
-    imagem.src = produto.imagem;
-    imagem.alt = produto.nome;
-    imagem.className = 'produto-img';
+    const imagem = criarImagemProduto(produto);
 
-    // CORPO
     const cardBody = document.createElement('div');
-    cardBody.className = 'produto-info';
+    cardBody.className = 'card-body d-flex flex-column';
 
-    // MARCA
-    const marca = document.createElement('span');
-    marca.className = 'produto-marca';
-    marca.innerText = produto.marca;
+    cardBody.innerHTML = `
+        <h5 class="card-title fw-bold text-white mb-1">${produto.NomeProduto}</h5>
+        
+        <span class="text-secondary small mb-2">
+            ${produto.NomeCategoria || 'Categoria ' + (produto.IdCategoria || '')}
+        </span>
+        
+        <p class="text-light small mb-2 mt-1">
+            ${produto.DescricaoProduto || ""}
+        </p>
+        
+        <h3 class="text-success fw-bold mb-3">
+            R$ ${Number(produto.Preco).toFixed(2).replace('.', ',')}
+        </h3>
+        
+        <p class="text-white small fw-bold mb-3 estoque-texto">Estoque: ${produto.Estoque}</p>
+        
+        <p class="mensagem small fw-bold mt-2 mb-2"></p>
 
-    // NOME
-    const nome = document.createElement('h5');
-    nome.className = 'produto-nome';
-    nome.innerText = produto.nome;
+        <div class="mt-auto">
+            <div class="d-flex gap-2 mb-2">
+            <input type="number" class="form-control bg-dark text-light border-secondary input-quantidade" value="1" min="1" max="${produto.Estoque}" style="width: 70px;">                <button class="btn btn-outline-success w-100 btn-carrinho">Ao Carrinho</button>
+            </div>
+            <button class="btn btn-success w-100 btn-comprar">Comprar Agora</button>
+        </div>
+    `;
 
-    // PREÇO
-    const preco = document.createElement('p');
-    preco.className = 'produto-preco';
-    preco.innerText = `R$ ${produto.preco}`;
+    const btnCarrinho = cardBody.querySelector('.btn-carrinho');
+    const btnComprar = cardBody.querySelector('.btn-comprar');
+    const inputQuantidade = cardBody.querySelector('.input-quantidade');
+    const textoMensagem = cardBody.querySelector('.mensagem');
+    const textoEstoque = cardBody.querySelector('.estoque-texto');
 
-    // ESTOQUE
-    const estoque = document.createElement('p');
-    estoque.innerText = `Estoque: ${produto.estoque}`;
+    btnCarrinho.addEventListener('click', () => {
+        textoMensagem.innerText = '';
+        const quantidadeDesejada = parseInt(inputQuantidade.value);
 
-    // QUANTIDADE
-    const quantidade = document.createElement('input');
-    quantidade.type = 'text';
-    quantidade.value = '1';
-    quantidade.className = 'input-quantidade';
-
-    // MENSAGEM
-    const mensagem = document.createElement('p');
-    mensagem.className = 'mensagem';
-
-    // BOTÃO CARRINHO
-    const botaoCarrinho = document.createElement('button');
-    botaoCarrinho.className = 'btn-carrinho mb-2';
-    botaoCarrinho.innerText = 'Enviar ao Carrinho';
-
-    botaoCarrinho.addEventListener('click', () => {
-
-        mensagem.innerText = '';
-
-        if (quantidade.value > produto.estoque) {
-
-            mensagem.className = 'mensagem mensagem-erro';
-            mensagem.innerText = 'Estoque insuficiente';
+        if (quantidadeDesejada > produto.Estoque) {
+            textoMensagem.className = 'mensagem text-danger small fw-bold mt-2 mb-2';
+            textoMensagem.innerText = 'Estoque insuficiente';
             return;
         }
 
         salvarCarrinho({
-            nome: produto.nome,
-            marca: produto.marca,
-            preco: produto.preco,
-            imagem: produto.imagem,
-            estoque: produto.estoque,
-            quantidade: quantidade.value
+            idProduto: produto.IdProduto,
+            nomeProduto: produto.NomeProduto,
+            preco: produto.Preco,
+            imagem: produto.Imagem,
+            estoque: produto.Estoque,
+            quantidade: quantidadeDesejada
         });
 
-        produto.estoque = parseInt(produto.estoque) - parseInt(quantidade.value);
-        estoque.innerText = `Estoque: ${produto.estoque}`;
+        produto.Estoque -= quantidadeDesejada;
+        textoEstoque.innerText = `Estoque: ${produto.Estoque}`;
 
-        mensagem.className = 'mensagem mensagem-sucesso';
-        mensagem.innerText = 'Produto enviado ao carrinho';
+        textoMensagem.className = 'mensagem text-success small fw-bold mt-2 mb-2';
+        textoMensagem.innerText = 'Produto no carrinho!';
     });
 
-    // BOTÃO COMPRAR
-    const botaoComprar = document.createElement('button');
-    botaoComprar.className = 'btn btn-secondary w-100';
-    botaoComprar.innerText = 'Comprar Agora';
+    // Botão Comprar
+    btnComprar.addEventListener('click', () => {
+        textoMensagem.innerText = '';
+        const quantidadeDesejada = parseInt(inputQuantidade.value);
 
-    botaoComprar.addEventListener('click', () => {
-
-        mensagem.innerText = '';
-
-        if (quantidade.value > produto.estoque) {
-
-            mensagem.className = 'mensagem mensagem-erro';
-            mensagem.innerText = 'Estoque insuficiente';
+        if (quantidadeDesejada > produto.Estoque) {
+            textoMensagem.className = 'mensagem text-danger small fw-bold mt-2 mb-2';
+            textoMensagem.innerText = 'Estoque insuficiente';
             return;
         }
 
         salvarCarrinho({
-            nome: produto.nome,
-            marca: produto.marca,
-            preco: produto.preco,
-            imagem: produto.imagem,
-            estoque: produto.estoque,
-            quantidade: quantidade.value
+            idProduto: produto.IdProduto,
+            nomeProduto: produto.NomeProduto,
+            preco: produto.Preco,
+            imagem: produto.Imagem,
+            estoque: produto.Estoque,
+            quantidade: quantidadeDesejada
         });
 
         location.href = '#/carrinho';
     });
 
-    // MONTAGEM
-    cardBody.append(
-        marca,
-        nome,
-        preco,
-        estoque,
-        quantidade,
-        mensagem,
-        botaoCarrinho,
-        botaoComprar
-    );
-
-    card.append(
-        imagem,
-        cardBody
-    );
-
+    card.append(imagem, cardBody);
     return card;
 }
