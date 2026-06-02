@@ -3,7 +3,7 @@ import criarNavbar, {
 } from './components/layout/navbar.component';
 
 import {
-    personagensPage
+    produtosPage
 } from './pages/produtos/produtos.pages';
 
 import {
@@ -12,7 +12,7 @@ import {
 
 criarNavbar();
 
-personagensPage();
+produtosPage();
 
 const btnHome = document.querySelector("#btnHome");
 
@@ -22,7 +22,7 @@ btnHome.addEventListener('click', () => {
 
     ativarMenu(btnHome);
 
-    personagensPage();
+    produtosPage();
 
 });
 

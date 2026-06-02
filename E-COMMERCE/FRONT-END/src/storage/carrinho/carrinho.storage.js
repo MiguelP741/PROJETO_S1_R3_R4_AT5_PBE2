@@ -8,7 +8,7 @@ export function salvarCarrinho(produto){
 
     carrinho.forEach(item=>{
 
-        if(item.nome===produto.nome){
+        if(item.nomeProduto===produto.nomeProduto){
 
             jaExiste=true;
 
@@ -60,7 +60,7 @@ export function estaNoCarrinho(produto){
     );
 
     return carrinho.some(
-        item=>item.nome===produto.nome
+        item=>item.nomeProduto===produto.nomeProduto
     );
 
 }
@@ -81,7 +81,7 @@ export function removerCarrinho(produto){
 
     const carrinhoAtualizado=
     carrinho.filter(
-        item=>item.nome!==produto.nome
+        item=>item.nomeProduto!==produto.nomeProduto
     );
 
     localStorage.setItem(
@@ -99,7 +99,7 @@ export function aumentarQuantidade(produto){
 
     carrinho.forEach(item=>{
 
-        if(item.nome===produto.nome){
+        if(item.nomeProduto===produto.nomeProduto){
 
             const quantidadeAtual=
             parseInt(item.quantidade);
@@ -136,7 +136,7 @@ export function diminuirQuantidade(produto){
 
     carrinho.forEach(item=>{
 
-        if(item.nome===produto.nome){
+        if(item.nomeProduto===produto.nomeProduto){
 
             item.quantidade=
             parseInt(item.quantidade)-1;
