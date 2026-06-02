@@ -19,8 +19,16 @@ const produtoRepository = {
         const [rows] = await connection.execute(sql, values);
         return rows;
     },
-    selecionar: async () => {
-        const sql = 'SELECT * FROM Produtos;';
+      selecionar: async () => {
+        const sql = `
+            SELECT 
+                p.*, 
+                c.NomeCategoria 
+            FROM 
+                Produtos p 
+            INNER JOIN 
+                Categorias c ON p.IdCategoria = c.IdCategoria;
+        `;
         const [rows] = await connection.execute(sql);
         return rows;
     }
