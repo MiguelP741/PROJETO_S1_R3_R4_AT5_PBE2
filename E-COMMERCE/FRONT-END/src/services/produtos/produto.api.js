@@ -1,8 +1,13 @@
-export async function buscarPersonagens() {
+import axios from 'axios';
 
-    const resposta = await fetch(
-        'http://localhost:3000/personagens'
-    );
+const API_URL = 'http://localhost:8000/produtos'; 
 
-    return resposta.json();
+export async function buscarProdutos() {
+  try {
+    const resposta = await axios.get(API_URL);
+    return resposta.data.result; 
+  } catch (erro) {
+    console.error('Erro ao buscar produtos:', erro);
+    return [];
+  }
 }
