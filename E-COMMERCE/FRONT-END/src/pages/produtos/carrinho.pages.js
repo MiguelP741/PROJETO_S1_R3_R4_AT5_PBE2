@@ -28,6 +28,7 @@ export async function carrinhoPage(){
 
     const lista=document.querySelector('#lista-carrinho');
     const totalTexto=document.querySelector('#total');
+    //Button final compra
     const botaoFinalizar=document.querySelector('#btn-finalizar');
     const carrinho=listarCarrinho();
 
